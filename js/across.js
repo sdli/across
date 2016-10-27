@@ -107,9 +107,12 @@
 			keyframes:"@keyframes nineBall{33% {-webkit-transform: translateY(10px);transform: translateY(10px);}66%{-webkit-transform: translateY(-10px);transform: translateY(-10px);}100% {-webkit-transform: translateY(0);transform: translateY(0);}}",
 			animation:"nineBall 0.6s {!gap} infinite ease-in-out",
 			classname: 'nineBall'
+		},
+		ballScales:{
+			style:".ballScales{width: 16px;height: 16px;border-radius: 100%;margin: 2px;-webkit-animation-fill-mode: both;animation-fill-mode: both;left: 0px;top: 0px;opacity: 0;margin: 0;-webkit-animation: ball-scale-multiple 1s 0s linear infinite;animation: ball-scale-multiple 1s 0s linear infinite;}",
+			keyframes:"@keyframes ballScales {0% {-webkit-transform: scale(0);transform: scale(0);opacity: 0;}5% {opacity: 1; }100% {-webkit-transform: scale(1);transform: scale(1);opacity: 0; } }",
+			animation:"ballScales 0.6s {!gap} infinite ease-in-out",
+			classname:'ballScales'
 		}
 };
 })(window);
-
-
-

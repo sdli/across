@@ -55,6 +55,12 @@
 								<p>nineBall</p>
 							</div>
 						</li>
+						<li>
+							<div class="domeLiHeader" id="animation_loading_ball_scales"></div>
+							<div class="domeLiBody">
+								<p>ballScales</p>
+							</div>
+						</li>
 						
 					</ul>
 					<div class='' style="clear: both;"></div>
@@ -62,6 +68,12 @@
 			</div>
 		</section>
 	</article>
+
+	<footer>
+		<div class="acrossFooter">
+			<p>Written By: 李书东 Steven Leo</p>
+		</div>
+	</footer>
 </body>
 <script type="text/javascript" src="js/across.js"></script>
 <script type="text/javascript">
@@ -87,9 +99,17 @@
 			num:6,
 			type:'nineBall'
 		});
+		var ballScales = new acrossAnimation({
+			id:'animation_loading_ball_scales',
+			color:'#000',
+			gap:100,
+			num:3,
+			type:'ballScales'
+		});
 		loading.startAnimation();
 		loadingBall.startAnimation();
 		nineBall.startAnimation();
+		ballScales.startAnimation();
 
 	}
 </script>
