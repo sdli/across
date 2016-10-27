@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id='hehe'></div>
+	<button id="start">开启动画</button>
+	<button id="stop">关闭</button>
+</body>
+
+<script type="text/javascript" src="js/across.js"></script>
+<script type="text/javascript">
+window.onload= function(){
+	var loading = new acrossAnimation({
+		id:'hehe',
+		color:'#ccc',
+		gap:200,
+		num:3,
+		type:'loading1'
+	});
+
+	var startBtn = document.getElementById('start');
+	var stopBtn = document.getElementById('stop');
+
+	startBtn.onclick = function(){
+		loading.startAnimation();
+	};
+
+	stopBtn.onclick = function(){
+		loading.stopAnimation();
+	};
+
+}
+
+</script>
+</html>
