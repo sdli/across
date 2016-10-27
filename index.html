@@ -2,37 +2,95 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<link href="http://cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+	<title>Across Animations</title>
 </head>
 <body>
-	<div id='hehe'></div>
-	<button id="start">开启动画</button>
-	<button id="stop">关闭</button>
+	<header>
+		<nav class="navBar">
+			<a class='gitbtn cyan' href="https://github.com/sdli/across"><i class="fa fa-github" aria-hidden="true"></i> GitHub</a>
+			<h1 class="cyan">across.js</h1>
+			<h3 class="lightGrey">Css animation library using js tool. </h3>
+			<p class="cyan">no styles, no keyframes, no animations, just javascript</p>
+		</nav>
+	</header>
+	<article style="width: 100%">
+		<section class="demoSection">
+			<div class="stepOne">
+				<h3>1. USAGE <i class="fa fa-code" aria-hidden="true"></i></h3>
+				<div class="showCode">
+					<xmp class="grey"><</xmp><xmp class="yellow">script</xmp><xmp class="grey"> src="</xmp><xmp class="red">across.js</xmp><xmp class="grey">"</</xmp><xmp class="yellow">script</xmp><xmp class="grey">></xmp><br>
+					<xmp class="grey"><</xmp><xmp class="yellow">script</xmp><xmp class="grey">></xmp><br>
+					<xmp class="yellow">	var </xmp><xmp class="purple">animations</xmp> =<xmp class="red">new NewAcross</xmp><xmp class="grey">({</xmp><br>
+					<xmp class="yellow">		</xmp><xmp class="grey">target:</xmp><xmp class="green">’id’</xmp><xmp class="sgrey">,//id of div or others</xmp><br>
+					<xmp class="yellow">		</xmp><xmp class="grey">type:</xmp><xmp class="green">’type1’</xmp><xmp class="sgrey">,//animation type code</xmp><br>
+					<xmp class="yellow">		</xmp><xmp class="grey">gap:</xmp><xmp class="green">200</xmp><xmp class="sgrey">,// single animation time interval</xmp><br>
+					<xmp class="yellow">		</xmp><xmp class="grey">num:</xmp><xmp class="green">6</xmp><xmp class="sgrey">// amount of animation tags</xmp><br>
+					<xmp class="grey">	});</xmp><br>
+					<xmp class="grey"></</xmp><xmp class="yellow">script</xmp><xmp class="grey">></xmp>
+				</div>
+			</div>
+			<div class="stepOne">
+				<h3>2. LIBARAY <i class="fa fa-list" aria-hidden="true"></i></h3>
+				<div class="showDemos">
+					<p class="demoTitle">Loading Animations</p>
+					<ul>
+						<li>
+							<div class="domeLiHeader" id="animation_loading_lines"></div>
+							<div class="domeLiBody">
+								<p>loadingLines</p>
+							</div>
+						</li>
+						<li>
+							<div class="domeLiHeader" id="animation_loading_ball"></div>
+							<div class="domeLiBody">
+								<p>ballPulse</p>
+							</div>
+						</li>
+						<li>
+							<div class="domeLiHeader" id="animation_loading_ball_nine"></div>
+							<div class="domeLiBody">
+								<p>nineBall</p>
+							</div>
+						</li>
+						
+					</ul>
+					<div class='' style="clear: both;"></div>
+				</div>
+			</div>
+		</section>
+	</article>
 </body>
-
 <script type="text/javascript" src="js/across.js"></script>
 <script type="text/javascript">
-window.onload= function(){
-	var loading = new acrossAnimation({
-		id:'hehe',
-		color:'#ccc',
-		gap:200,
-		num:3,
-		type:'loading1'
-	});
-
-	var startBtn = document.getElementById('start');
-	var stopBtn = document.getElementById('stop');
-
-	startBtn.onclick = function(){
+	window.onload= function(){
+		var loading = new acrossAnimation({
+			id:'animation_loading_lines',
+			color:'#000',
+			gap:200,
+			num:4,
+			type:'loadingLines'
+		});
+		var loadingBall = new acrossAnimation({
+			id:'animation_loading_ball',
+			color:'#000',
+			gap:200,
+			num:3,
+			type:'ballPulse'
+		});
+		var nineBall = new acrossAnimation({
+			id:'animation_loading_ball_nine',
+			color:'#000',
+			gap:100,
+			num:6,
+			type:'nineBall'
+		});
 		loading.startAnimation();
-	};
+		loadingBall.startAnimation();
+		nineBall.startAnimation();
 
-	stopBtn.onclick = function(){
-		loading.stopAnimation();
-	};
-
-}
-
+	}
 </script>
 </html>
