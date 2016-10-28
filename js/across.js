@@ -151,9 +151,20 @@
 			divStyle:".semiCircleDiv{position:relative;width:16px;height:16px;overflow:hidden;}.semiCircleDiv i{position: absolute;border-width: 0px;border-radius: 100%;background-image:-webkit-linear-gradient(transparent 0%, transparent 70%, #fff 30%, #fff 100%);background-image: linear-gradient(transparent 0%, transparent 70%, #fff 30%, #fff 100%);width: 100%;height: 100%; }",
 			display:'block'
 		},
+		singleRipple:{
+			style:".singleRipple{-webkit-animation-fill-mode: both;animation-fill-mode: both;height: 20px;width: 20px;border-radius: 100%;border: 2px solid #000;}",
+			keyframes:"@keyframes singleRipple{0%{-webkit-transform: scale(0.1);transform: scale(0.1);opacity: 1;}70%{-webkit-transform: scale(1);transform: scale(1);opacity:0.7;}100%{opacity: 0.0;}}",
+			animation:"singleRipple 1s {!gap} infinite",
+			classname:'singleRipple',
+			divStyle:".singleRippleDiv{-webkit-transform:translateX(45%)}",
+			display:'block'
+		}
 
 };
 })(window);
+
+
+
 
 
 

@@ -74,6 +74,12 @@
 							<div class="domeLiBody">
 								<p>semiCircle</p>
 							</div>
+						</li>						
+						<li>
+							<div class="domeLiHeader" id="animation_loading_single_ripple"></div>
+							<div class="domeLiBody">
+								<p>singleRipple</p>
+							</div>
 						</li>
 					</ul>
 					<div class='' style="clear: both;"></div>
@@ -115,7 +121,7 @@
 		var ballScales = new acrossAnimation({
 			id:'animation_loading_ball_scales',
 			color:'#000',
-			gap:100,
+			gap:200,
 			num:3,
 			type:'ballScales'
 		});
@@ -133,12 +139,20 @@
 			num:1,
 			type:'semiCircle'
 		});
+		var singleRipple = new acrossAnimation({
+			id:'animation_loading_single_ripple',
+			color:'#000',
+			gap:100,
+			num:1,
+			type:'singleRipple'
+		});
 		loading.startAnimation();
 		loadingBall.startAnimation();
 		nineBall.startAnimation();
 		ballScales.startAnimation();
 		spinFades.startAnimation();
 		semiCircle.startAnimation();
+		singleRipple.startAnimation();
 
 	}
 </script>
