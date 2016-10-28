@@ -28,7 +28,7 @@ loading.stopAnimation()；
 ```
 
 
-2. 动画库（更新中），详见[：预览网址](https://sdli.github.io/across/)
+### 2. 动画库（更新中），详见[：预览网址](https://sdli.github.io/across/)
 
 ```javascript
 //加载动画库：
