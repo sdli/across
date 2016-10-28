@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.css">
 	<link href="https://cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="shortcut icon" href="css/favicon.ico" />
 	<title>Across Animations</title>
 </head>
 <body>
@@ -62,6 +63,18 @@
 								<p>ballScales</p>
 							</div>
 						</li>
+						<li>
+							<div class="domeLiHeader" id="animation_loading_spin_fades"></div>
+							<div class="domeLiBody">
+								<p>spinFades</p>
+							</div>
+						</li>
+						<li>
+							<div class="domeLiHeader" id="animation_loading_semi_circles"></div>
+							<div class="domeLiBody">
+								<p>semiCircle</p>
+							</div>
+						</li>
 					</ul>
 					<div class='' style="clear: both;"></div>
 				</div>
@@ -95,7 +108,7 @@
 		var nineBall = new acrossAnimation({
 			id:'animation_loading_ball_nine',
 			color:'#000',
-			gap:100,
+			gap:50,
 			num:6,
 			type:'nineBall'
 		});
@@ -106,10 +119,26 @@
 			num:3,
 			type:'ballScales'
 		});
+		var spinFades = new acrossAnimation({
+			id:'animation_loading_spin_fades',
+			color:'#000',
+			gap:100,
+			num:8,
+			type:'spinFades'
+		});
+		var semiCircle = new acrossAnimation({
+			id:'animation_loading_semi_circles',
+			color:'#000',
+			gap:100,
+			num:1,
+			type:'semiCircle'
+		});
 		loading.startAnimation();
 		loadingBall.startAnimation();
 		nineBall.startAnimation();
 		ballScales.startAnimation();
+		spinFades.startAnimation();
+		semiCircle.startAnimation();
 
 	}
 </script>

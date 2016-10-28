@@ -25,10 +25,13 @@
 				cssRules = acrossAnimationLibrary[this.file].keyframes,
 				node = document.getElementById(this.id),
 				styles = acrossAnimationLibrary[this.file].style, 
-				tar = document.createElement('style');
+				divStyles = acrossAnimationLibrary[this.file].divStyle, 
+				tar = document.createElement('style'),
+				div = document.createElement('div');
 
 			try{
 				tar.appendChild(document.createTextNode(styles));
+				tar.appendChild(document.createTextNode(divStyles));
 			  }catch(ex){
 				tar.styleSheet.cssText = styles;
 			}
@@ -40,11 +43,15 @@
 				var tempTag = document.createElement(this.tag);
 				tempTag.className = acrossAnimationLibrary[this.file].classname;
 				tempTag.style.backgroundColor = this.color;
+				console.log(this.color);
 				tags.push(tempTag);
 			}
 			for(var i=0;i<tags.length;i++){
-				node.appendChild(tags[i]);
+				div.appendChild(tags[i]);
 			}
+
+			div.className = 'acrossDiv ' + this.file + 'Div';
+			node.appendChild(div);
 			tempTag = null;
 			tags = null;
 			return true;
@@ -58,21 +65,30 @@
 	 */
 	targetInfo.prototype.startAnimation = function(){
 		var thisDom = document.getElementById(this.id),
-			childNodes = thisDom.childNodes,
+			childNodes = thisDom.firstChild.childNodes,
 			gapTime = this.gap?this.gap:0,
 			animation = acrossAnimationLibrary[this.file].animation;
 		if(!gapTime){
 			for(var i=0;i<this.num;i++){
 				var animationWithGap = animation.replace('{!gap}','0s');
 				childNodes[i].style.animation = animationWithGap;
-				childNodes[i].style.display = 'inline-block';
-				gapTime += this.gap;
+				if(acrossAnimationLibrary[this.file].display){
+					childNodes[i].style.display = acrossAnimationLibrary[this.file].display;
+				}else{
+					childNodes[i].style.display = 'inline-block';
+					gapTime += this.gap;
+				}
 			}
 		}else{
 			for(var i=0;i<this.num;i++){
 				var animationWithGap = animation.replace('{!gap}',gapTime/1000 +'s');
 				childNodes[i].style.animation = animationWithGap;
-				childNodes[i].style.display = 'inline-block';
+				if(acrossAnimationLibrary[this.file].display){
+					childNodes[i].style.display = acrossAnimationLibrary[this.file].display;
+				}else{
+					childNodes[i].style.display = 'inline-block';
+					gapTime += this.gap;
+				}
 				gapTime += this.gap;
 			}
 		}
@@ -94,25 +110,69 @@
 			style:".loadingLines{display:none;width:2px;height:26px;border-radius:2px;margin:0 2px;}",
 			keyframes:"@keyframes loading{0%{transform: scaleY(1);}50%{transform: scaleY(0.5);}100%{transform: scaleY(1);}}",
 			animation:"loading 1s ease-in {!gap} infinite",
-			classname: 'loadingLines'
+			classname: 'loadingLines',
+			divStyle:''
 		},
 		ballPulse:{
 			style:".ballPulse{width: 6px;height: 6px;border-radius: 100%;margin: 2px;-webkit-animation-fill-mode: both;animation-fill-mode: both;display: none;}",
 			keyframes:"@keyframes scale {0%{-webkit-transform: scale(1);transform: scale(1);opacity: 1; }45% {-webkit-transform: scale(0.1);transform: scale(0.1);opacity: 0.7; }80% {-webkit-transform: scale(1);transform: scale(1);opacity: 1; } }",
 			animation:"scale 0.75s {!gap} infinite cubic-bezier(.2, .68, .18, 1.08)",
-			classname: 'ballPulse'
+			classname: 'ballPulse',
+			divStyle:''
 		},
 		nineBall:{
 			style:".nineBall{width: 4px;height: 4px;border-radius: 100%;margin: 1px;-webkit-animation-fill-mode: both;animation-fill-mode: both;display: none;}",
 			keyframes:"@keyframes nineBall{33% {-webkit-transform: translateY(10px);transform: translateY(10px);}66%{-webkit-transform: translateY(-10px);transform: translateY(-10px);}100% {-webkit-transform: translateY(0);transform: translateY(0);}}",
 			animation:"nineBall 0.6s {!gap} infinite ease-in-out",
-			classname: 'nineBall'
+			classname: 'nineBall',
+			divStyle:''
 		},
 		ballScales:{
-			style:".ballScales{width: 16px;height: 16px;border-radius: 100%;margin: 2px;-webkit-animation-fill-mode: both;animation-fill-mode: both;left: 0px;top: 0px;opacity: 0;margin: 0;-webkit-animation: ball-scale-multiple 1s 0s linear infinite;animation: ball-scale-multiple 1s 0s linear infinite;}",
-			keyframes:"@keyframes ballScales {0% {-webkit-transform: scale(0);transform: scale(0);opacity: 0;}5% {opacity: 1; }100% {-webkit-transform: scale(1);transform: scale(1);opacity: 0; } }",
-			animation:"ballScales 0.6s {!gap} infinite ease-in-out",
-			classname:'ballScales'
-		}
+			style:".acrossDiv{margin:0 auto;}",
+			keyframes:"@keyframes ballScales{0% {-webkit-transform: scale(0);transform: scale(0);opacity: 0;}5% {opacity: 1; }100% {-webkit-transform: scale(1);transform: scale(1);opacity: 0; } }",
+			animation:"ballScales 1s {!gap} infinite ease-in-out",
+			classname:'ballScales',
+			divStyle:".ballScalesDiv{position: relative;-webkit-transform: translateX(20px);text-align:center;width:100%;margin:0 auto;} .ballScalesDiv i{width: 30px;height:30px;border-radius: 100%;-webkit-animation-fill-mode: both;animation-fill-mode: both;position: absolute;left:25%;top:25%;margin: 0 auto;}",
+			display:'block'
+		},
+		spinFades:{
+			style:"",
+			keyframes:"@keyframes spinFades{50%{opacity: 0.3;}100%{opacity:1;}}",
+			animation:"spinFades 1.2s {!gap} infinite ease-in-out",
+			classname:'spinFades',
+			divStyle:".spinFadesDiv{position: relative;transform: translateX(45%) translateY(15px);}.spinFadesDiv i:nth-child(1) {top: 10px;left: 0;}.spinFadesDiv i:nth-child(2) {top: 6.81818px;left: 6.81818px;-webkit-transform: rotate(-45deg);-ms-transform: rotate(-45deg);transform: rotate(-45deg);}.spinFadesDiv i:nth-child(3) {top: 0;left: 10px;-webkit-transform: rotate(90deg);-ms-transform: rotate(90deg);transform: rotate(90deg);}.spinFadesDiv i:nth-child(4) {top: -6.81818px;left: 6.81818px;-webkit-transform: rotate(45deg);-ms-transform: rotate(45deg);transform: rotate(45deg);}.spinFadesDiv i:nth-child(5) {top: -10px;left: 0;}.spinFadesDiv i:nth-child(6) {top: -6.81818px;left: -6.81818px;-webkit-transform: rotate(-45deg);-ms-transform: rotate(-45deg);transform: rotate(-45deg);}.spinFadesDiv i:nth-child(7) {top: 0;left: -10px;-webkit-transform: rotate(90deg);-ms-transform: rotate(90deg);transform: rotate(90deg);}.spinFadesDiv i:nth-child(8) {top: 6.81818px;left: -6.81818px;-webkit-transform: rotate(45deg);-ms-transform: rotate(45deg);transform: rotate(45deg);}.spinFadesDiv i{background-color: #fff;width: 2px;height: 8px;border-radius: 2px;margin: 2px;-webkit-animation-fill-mode: both;animation-fill-mode: both;position: absolute;}",
+			display:'block'
+		},
+		semiCircle:{
+			style:"",
+			keyframes:"@keyframes semiCircle {0% {-webkit-transform: rotate(0deg);transform: rotate(0deg);}50%{-webkit-transform: rotate(180deg);transform: rotate(180deg); }100% {-webkit-transform: rotate(360deg);transform: rotate(360deg); } }",
+			animation:"semiCircle 1s {!gap} infinite ease-in-out",
+			classname:'semiCircle',
+			divStyle:".semiCircleDiv{position:relative;width:16px;height:16px;overflow:hidden;}.semiCircleDiv i{position: absolute;border-width: 0px;border-radius: 100%;background-image:-webkit-linear-gradient(transparent 0%, transparent 70%, #fff 30%, #fff 100%);background-image: linear-gradient(transparent 0%, transparent 70%, #fff 30%, #fff 100%);width: 100%;height: 100%; }",
+			display:'block'
+		},
+
 };
 })(window);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
